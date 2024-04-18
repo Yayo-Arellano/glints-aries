@@ -21,3 +21,19 @@ export const Default = DefaultTemplate.bind({});
 Default.args = {
   url: '#',
 };
+
+const WithinParagraphTemplate: Story<LinkProps> = args => {
+  return (
+    <>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      <Link external {...args}>
+        {' '}
+        Default Link
+      </Link>{' '}
+      Sed volutpat eget mi in consequat. Aliquam cursus nunc pulvinar rutrum
+      pharetra.
+    </>
+  );
+};
+
+export const WithinParagraph = WithinParagraphTemplate.bind({});

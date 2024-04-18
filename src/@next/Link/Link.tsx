@@ -27,6 +27,7 @@ export const Link = ({
       data-underline={!removeUnderline}
       data-monochrome={monochrome}
       {...(external && { target: '_blank' })}
+      external={external}
       {...props}
     >
       <Typography variant="body1" as="span">

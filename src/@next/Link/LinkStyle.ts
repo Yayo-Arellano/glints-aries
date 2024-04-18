@@ -3,9 +3,16 @@ import { Blue, Neutral } from '../utilities/colors';
 import { space2 } from '../utilities/spacing';
 import { LinkProps } from './Link';
 
+const centerAlign = `
+  vertical-align: middle;
+
+  svg {
+    vertical-align: middle;
+  }
+`;
+
 export const StyledLink = styled.a<LinkProps>`
-  display: flex;
-  align-items: center;
+  ${({ external }) => external && centerAlign}
   color: ${Blue.S99};
 
   &[data-underline='false'] {

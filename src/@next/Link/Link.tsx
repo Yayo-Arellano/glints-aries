@@ -29,7 +29,9 @@ export const Link = ({
       {...(external && { target: '_blank' })}
       {...props}
     >
-      <Typography variant="body1">{children}</Typography>
+      <Typography variant="body1" as="span">
+        {children}
+      </Typography>
       {external && <Icon name="ri-external-link-line" />}
     </StyledLink>
   );

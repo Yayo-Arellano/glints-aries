@@ -58,3 +58,11 @@ test('Link - monochrome with external link', async ({ page }) => {
     'link-monochrome-with-external-pressed.png'
   );
 });
+
+test('Link - within paragraph', async ({ page }) => {
+  const linkPage = new LinkPage(page);
+  await linkPage.gotoWithinParagraphPage();
+  await expect(linkPage.container).toHaveScreenshot(
+    'link-within-paragraph.png'
+  );
+});

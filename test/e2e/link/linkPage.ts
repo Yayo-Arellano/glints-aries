@@ -1,5 +1,5 @@
 import { Locator, Page } from '@playwright/test';
-import { StoryBookPage } from '../storybookPage';
+import { Args, StoryBookPage } from '../storybookPage';
 
 export class LinkPage extends StoryBookPage {
   readonly link: Locator;
@@ -9,5 +9,10 @@ export class LinkPage extends StoryBookPage {
     this.link = page
       .frameLocator('internal:attr=[title="storybook-preview-iframe"i]')
       .getByText('Default Link');
+  }
+
+  async gotoWithinParagraphPage(args?: Args) {
+    this.setPath('?path=/story/next-link--within-paragraph');
+    await this.goto(args);
   }
 }

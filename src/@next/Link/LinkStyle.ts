@@ -14,6 +14,8 @@ const centerAlign = `
 export const StyledLink = styled.a<LinkProps>`
   ${({ external }) => external && centerAlign}
   color: ${Blue.S99};
+  cursor: pointer;
+  text-decoration: underline;
 
   &[data-underline='false'] {
     text-decoration: none;

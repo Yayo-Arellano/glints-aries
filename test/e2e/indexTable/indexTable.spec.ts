@@ -35,13 +35,16 @@ test('IndexTable - bulk action', async ({ page }) => {
   await indexTablePage.selectAllCheckbox.click();
   await expect(indexTablePage.bulkAction).toBeVisible();
   expect(await indexTablePage.selectAllCheckbox.isChecked()).toBe(true);
-  isCheckboxValuesCorrect = await indexTablePage.verifyCheckboxValues(
-    new Array(4).fill(true)
-  );
+  isCheckboxValuesCorrect = await indexTablePage.verifyCheckboxValues([
+    true,
+    false,
+    true,
+    true,
+  ]);
   expect(isCheckboxValuesCorrect).toBe(true);
 
   selectAllTableHeadText = await indexTablePage.tableHeadRow.textContent();
-  expect(selectAllTableHeadText).toBe('4 selected candidates');
+  expect(selectAllTableHeadText).toBe('3 selected candidates');
 
   selectAllTableHeadText = await indexTablePage.bulkAction.textContent();
   expect(selectAllTableHeadText).toContain('Reject');
@@ -56,14 +59,14 @@ test('IndexTable - bulk action', async ({ page }) => {
   );
   isCheckboxValuesCorrect = await indexTablePage.verifyCheckboxValues([
     true,
-    true,
+    false,
     true,
     false,
   ]);
   expect(isCheckboxValuesCorrect).toBe(true);
 
   selectAllTableHeadText = await indexTablePage.tableHeadRow.textContent();
-  expect(selectAllTableHeadText).toBe('3 selected candidates');
+  expect(selectAllTableHeadText).toBe('2 selected candidates');
 
   selectAllTableHeadText = await indexTablePage.bulkAction.textContent();
   expect(selectAllTableHeadText).toContain('Reject');

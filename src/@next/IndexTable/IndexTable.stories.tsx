@@ -55,6 +55,7 @@ const candidates = [
     yearsExperience: '4 years, 3 months',
     latestWorkExperience: 'Backend Engineer at Google',
     latestWorkDuration: 'Jan 2021 - Jan 2022',
+    disabled: false,
   },
   {
     id: '2',
@@ -65,6 +66,7 @@ const candidates = [
     yearsExperience: '4 years, 3 months',
     latestWorkExperience: 'Backend Engineer at Google',
     latestWorkDuration: 'Jan 2021 - Jan 2022',
+    disabled: true,
   },
   {
     id: '3',
@@ -75,6 +77,7 @@ const candidates = [
     yearsExperience: '4 years, 3 months',
     latestWorkExperience: 'Backend Engineer at Google',
     latestWorkDuration: 'Jan 2021 - Jan 2022',
+    disabled: false,
   },
   {
     id: '4',
@@ -85,9 +88,10 @@ const candidates = [
     yearsExperience: '4 years, 3 months',
     latestWorkExperience: 'Backend Engineer at Google',
     latestWorkDuration: 'Jan 2021 - Jan 2022',
+    disabled: false,
   },
   {
-    id: '1',
+    id: '5',
     url: 'candidate/1',
     name: 'Dwi Nugraha Putri',
     location: 'Jakarta, Indonesia',
@@ -97,7 +101,7 @@ const candidates = [
     latestWorkDuration: 'Jan 2021 - Jan 2022',
   },
   {
-    id: '2',
+    id: '6',
     url: 'candidate/2',
     name: 'Ahmad Dani',
     location: 'Jakarta, Indonesia',
@@ -107,7 +111,7 @@ const candidates = [
     latestWorkDuration: 'Jan 2021 - Jan 2022',
   },
   {
-    id: '3',
+    id: '7',
     url: 'candidate/3',
     name: 'Syed Ali',
     location: 'Jakarta, Indonesia',
@@ -117,7 +121,7 @@ const candidates = [
     latestWorkDuration: 'Jan 2021 - Jan 2022',
   },
   {
-    id: '4',
+    id: '8',
     url: 'candidate/4',
     name: 'Muhammad Danial',
     location: 'Jakarta, Indonesia',
@@ -127,7 +131,7 @@ const candidates = [
     latestWorkDuration: 'Jan 2021 - Jan 2022',
   },
   {
-    id: '1',
+    id: '9',
     url: 'candidate/1',
     name: 'Dwi Nugraha Putri',
     location: 'Jakarta, Indonesia',
@@ -137,7 +141,7 @@ const candidates = [
     latestWorkDuration: 'Jan 2021 - Jan 2022',
   },
   {
-    id: '2',
+    id: '10',
     url: 'candidate/2',
     name: 'Ahmad Dani',
     location: 'Jakarta, Indonesia',
@@ -147,7 +151,7 @@ const candidates = [
     latestWorkDuration: 'Jan 2021 - Jan 2022',
   },
   {
-    id: '3',
+    id: '11',
     url: 'candidate/3',
     name: 'Syed Ali',
     location: 'Jakarta, Indonesia',
@@ -157,7 +161,7 @@ const candidates = [
     latestWorkDuration: 'Jan 2021 - Jan 2022',
   },
   {
-    id: '4',
+    id: '12',
     url: 'candidate/4',
     name: 'Muhammad Danial',
     location: 'Jakarta, Indonesia',
@@ -167,7 +171,7 @@ const candidates = [
     latestWorkDuration: 'Jan 2021 - Jan 2022',
   },
   {
-    id: '1',
+    id: '13',
     url: 'candidate/1',
     name: 'Dwi Nugraha Putri',
     location: 'Jakarta, Indonesia',
@@ -177,7 +181,7 @@ const candidates = [
     latestWorkDuration: 'Jan 2021 - Jan 2022',
   },
   {
-    id: '2',
+    id: '14',
     url: 'candidate/2',
     name: 'Ahmad Dani',
     location: 'Jakarta, Indonesia',
@@ -187,7 +191,7 @@ const candidates = [
     latestWorkDuration: 'Jan 2021 - Jan 2022',
   },
   {
-    id: '3',
+    id: '15',
     url: 'candidate/3',
     name: 'Syed Ali',
     location: 'Jakarta, Indonesia',
@@ -197,7 +201,7 @@ const candidates = [
     latestWorkDuration: 'Jan 2021 - Jan 2022',
   },
   {
-    id: '4',
+    id: '16',
     url: 'candidate/4',
     name: 'Muhammad Danial',
     location: 'Jakarta, Indonesia',
@@ -243,8 +247,11 @@ const promotedBulkActions = [
 ];
 
 const Template: Story<IndexTableProps> = args => {
+  const selectableCandidates = candidatesSlice.filter(
+    candidate => !candidate.disabled
+  );
   const { selectedResources, allResourcesSelected, handleSelectionChange } =
-    useIndexResourceState(candidatesSlice);
+    useIndexResourceState(selectableCandidates);
 
   const rowMarkup = candidatesSlice.map(
     (
@@ -256,6 +263,7 @@ const Template: Story<IndexTableProps> = args => {
         yearsExperience,
         latestWorkExperience,
         latestWorkDuration,
+        disabled,
       },
       index
     ) => (
@@ -265,6 +273,7 @@ const Template: Story<IndexTableProps> = args => {
         selected={selectedResources.includes(id)}
         position={index}
         onClick={() => console.log(`row clicked ${id}`)}
+        disabled={disabled}
       >
         <IndexTable.Cell>
           <Icon name="ri-account-circle-fill" height={40} fill={Neutral.B40} />
@@ -295,10 +304,11 @@ const Template: Story<IndexTableProps> = args => {
       </IndexTable.Row>
     )
   );
+
   return (
     <IndexTable
-      itemCount={candidatesSlice.length}
       {...args}
+      itemCount={selectableCandidates.length}
       resourceName={resourceName}
       selectedItemsCount={
         allResourcesSelected ? 'All' : selectedResources.length

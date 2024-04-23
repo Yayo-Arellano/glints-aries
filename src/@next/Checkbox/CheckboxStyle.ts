@@ -41,6 +41,11 @@ export const StyledContainer = styled.div`
   &[aria-disabled='true'] div[role='checkbox'] {
     border-color: ${Neutral.B85};
     background: ${Neutral.B95};
+    cursor: not-allowed;
+  }
+
+  &[aria-disabled='true'] input {
+    cursor: not-allowed;
   }
 
   &[aria-disabled='true'] svg {
@@ -68,10 +73,20 @@ export const StyledCheckbox = styled.div<CheckboxProps>`
   }};
   cursor: pointer;
   border-radius: ${borderRadius4};
-  > input {
+  position: relative;
+
+  & input {
     opacity: 0;
     cursor: pointer;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: -4px;
+    left: -4px;
   }
+
   &[data-focus='true'] {
     box-shadow:
       0px 0px 0px 1px ${Neutral.B100},

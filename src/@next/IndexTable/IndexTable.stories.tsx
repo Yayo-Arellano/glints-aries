@@ -250,8 +250,13 @@ const Template: Story<IndexTableProps> = args => {
   const selectableCandidates = candidatesSlice.filter(
     candidate => !candidate.disabled
   );
+  const selectableCandidatesCount = selectableCandidates.length;
+
+  const tableCandidatesData = selectableCandidatesCount
+    ? selectableCandidates
+    : candidatesSlice;
   const { selectedResources, allResourcesSelected, handleSelectionChange } =
-    useIndexResourceState(selectableCandidates);
+    useIndexResourceState(tableCandidatesData);
 
   const rowMarkup = candidatesSlice.map(
     (
@@ -308,11 +313,12 @@ const Template: Story<IndexTableProps> = args => {
   return (
     <IndexTable
       {...args}
-      itemCount={selectableCandidates.length}
+      itemCount={tableCandidatesData.length}
       resourceName={resourceName}
       selectedItemsCount={
         allResourcesSelected ? 'All' : selectedResources.length
       }
+      selectableItemsCount={selectableCandidates.length}
       onSelectionChange={handleSelectionChange}
       promotedBulkActions={promotedBulkActions}
       headings={[

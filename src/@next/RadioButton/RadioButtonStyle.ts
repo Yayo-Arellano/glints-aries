@@ -82,7 +82,8 @@ export const LabelWrapper = styled.div`
   gap: ${space4};
 
   &[data-disabled='true'] {
-    span {
+    span,
+    div {
       color: ${Colors.Neutral.B85};
     }
     cursor: not-allowed;

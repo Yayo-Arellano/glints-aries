@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import { Colors } from '..';
+import { Typography } from '../Typography';
 import {
   LabelWrapper,
   RadioButtonInput,
   RadioButtonWrapper,
 } from './RadioButtonStyle';
-import { Typography } from '../Typography';
-import { Colors } from '..';
 
 export interface RadioButtonProps
   extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onChange'> {
-  label?: string;
-  helperText?: string;
+  label?: ReactNode;
+  helperText?: ReactNode;
   disabled?: boolean;
   name?: string;
   checked?: boolean;
@@ -35,6 +35,34 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
     }: RadioButtonProps,
     ref
   ) {
+    const renderLabel = () => {
+      if (!label) return null;
+
+      return (
+        <Typography
+          variant="body1"
+          as={typeof label === 'string' ? 'span' : 'div'}
+          color={Colors.Neutral.B18}
+        >
+          {label}
+        </Typography>
+      );
+    };
+
+    const renderHelperText = () => {
+      if (!helperText) return null;
+
+      return (
+        <Typography
+          variant="subtitle2"
+          as={typeof label === 'string' ? 'span' : 'div'}
+          color={Colors.Neutral.B40}
+        >
+          {helperText}
+        </Typography>
+      );
+    };
+
     return (
       <RadioButtonWrapper>
         <RadioButtonInput
@@ -49,12 +77,8 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
           {...props}
         />
         <LabelWrapper data-disabled={disabled}>
-          <Typography variant="body1" as="span" color={Colors.Neutral.B18}>
-            {label}
-          </Typography>
-          <Typography variant="subtitle2" as="span" color={Colors.Neutral.B40}>
-            {helperText}
-          </Typography>
+          {renderLabel()}
+          {renderHelperText()}
         </LabelWrapper>
       </RadioButtonWrapper>
     );

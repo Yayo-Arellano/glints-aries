@@ -26,6 +26,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       active,
       fullWidth,
       loading,
+      disabled,
+      onClick,
       ...otherProps
     }: ButtonProps,
     ref
@@ -45,6 +47,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       return null;
     };
 
+    const onClickHandler = (...args: Parameters<ButtonProps['onClick']>) => {
+      if (loading || disabled) {
+        return;
+      }
+      return onClick?.(...args);
+    };
+
     return (
       <StyledButton
         ref={ref}
@@ -54,6 +63,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         data-icon={!!icon}
         {...otherProps}
         onMouseUp={e => e.currentTarget.blur()}
+        onClick={onClickHandler}
+        disabled={disabled}
       >
         {loading && <Spinner />}
         {renderIcon('left')}

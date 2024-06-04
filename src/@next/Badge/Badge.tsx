@@ -5,6 +5,7 @@ import { BadgeStyle, badgeTextColor } from './BadgeStyle';
 const badgeStatusVariant = [
   'neutral',
   'success',
+  'successBright',
   'information',
   'warning',
   'critical',

@@ -9,6 +9,7 @@ const badgeBackgroundColor: {
 } = {
   ['neutral']: Neutral.B95,
   ['success']: Green.B89,
+  ['successBright']: Green.B61,
   ['information']: Blue.S08,
   ['warning']: Orange.S21,
   ['critical']: Red.B100,
@@ -23,6 +24,7 @@ export const badgeTextColor: {
 } = {
   ['neutral']: Neutral.B18,
   ['success']: Neutral.B18,
+  ['successBright']: Neutral.B100,
   ['information']: Neutral.B18,
   ['warning']: Neutral.B18,
   ['critical']: Neutral.B18,

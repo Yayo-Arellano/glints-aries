@@ -25,6 +25,14 @@ test('Badge - success', async ({ page }) => {
   await expect(badgePage.container).toHaveScreenshot('badge-success.png');
 });
 
+test('Badge - success bright', async ({ page }) => {
+  const badgePage = getPage(page);
+  await badgePage.goto('args=status:successBright');
+  await expect(badgePage.container).toHaveScreenshot(
+    'badge-success-bright.png'
+  );
+});
+
 test('Badge - warning', async ({ page }) => {
   const badgePage = getPage(page);
   await badgePage.goto('args=status:warning');

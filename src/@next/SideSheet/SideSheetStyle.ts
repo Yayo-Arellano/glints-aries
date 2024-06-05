@@ -84,11 +84,12 @@ export const StyledSideSheetHeader = styled.div`
   display: flex;
   align-items: top;
   padding: 16px 20px;
+  gap: 8px;
 `;
 
 export const StyledButtonContainer = styled.div`
   cursor: pointer;
-  margin: 4px 8px 4px 0px;
+  margin-top: 3px;
   svg {
     width: 24px;
     fill: ${Neutral.B40};
@@ -97,6 +98,8 @@ export const StyledButtonContainer = styled.div`
 
 export const StyledRightContainer = styled.div`
   margin-left: auto;
+  display: flex;
+  align-items: top;
 `;
 
 export const StyledHorizontalLine = styled.hr`

@@ -11,6 +11,7 @@ export interface Option {
   disabled?: boolean;
   id?: string;
   label: string | React.ReactNode;
+  sublabel?: React.ReactNode;
   value: string;
 }
 
@@ -55,7 +56,7 @@ export const Menu = ({
     return (
       <StyledMenu>
         {options?.map((option: Option) => {
-          const { value, label, disabled, id } = option;
+          const { value, label, sublabel, disabled, id } = option;
           const randomId = nextId('glints-menu-option');
           const menuOptionId = id ? id : randomId;
           const isSelected = selectedValues?.includes(value);
@@ -69,7 +70,7 @@ export const Menu = ({
               onClick={onClick}
               allowMultiple={allowMultiple}
             >
-              <MenuOptionLabel label={label} />
+              <MenuOptionLabel label={label} sublabel={sublabel} />
             </MenuOption>
           );
         })}

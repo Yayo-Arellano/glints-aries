@@ -35,6 +35,13 @@ const countries = [
   { label: 'Vietnam', value: 'VIETNAM' },
 ];
 
+const skills = [
+  { label: 'Fishing', sublabel: 'Memancing', value: 'fishing' },
+  { label: 'Cooking', sublabel: 'Memasak', value: 'cooking' },
+  { label: 'Swimming', sublabel: 'Renang', value: 'swimming' },
+  { label: 'Flying', sublabel: 'Terbang', value: 'flying' },
+];
+
 const options = [
   {
     active: false,
@@ -1415,6 +1422,109 @@ WithCustomPrefix.parameters = {
             }}
             label="Label"
             prefix={<Icon name="ri-account-circle-fill" />}
+            hasError
+            helpText={<InlineError text="Error message" />}
+          />
+          <div style={{ paddingTop: space8 }}>{tagsMarkup}</div>
+        </div>
+      );
+      `,
+    },
+  },
+};
+
+const OptionsWithSublabelTemplate: Story<SelectProps> = args => {
+  return <SearchableSelect data={skills} {...args} />;
+};
+
+export const OptionsWithSublabel = OptionsWithSublabelTemplate.bind({});
+
+OptionsWithSublabel.args = {};
+
+OptionsWithSublabel.parameters = {
+  docs: {
+    source: {
+      code: `
+      const skills = [
+        { label: 'Fishing', sublabel: 'Memancing', value: 'fishing' },
+        { label: 'Cooking', sublabel: 'Memasak', value: 'cooking' },
+        { label: 'Swimming', sublabel: 'Renang', value: 'swimming' },
+        { label: 'Flying', sublabel: 'Terbang', value: 'flying' },
+      ];
+
+      const [inputValue, setInputValue] = useState('');
+      const [selectedOptions, setSelectedOptions] = useState([]);
+      const [isSearchEmpty, setIsSearchEmpty] = useState(false);
+    
+      const [options, setOptions] = useState(countries);
+    
+      const handleInputChange = (value: string) => {
+        setInputValue(value);
+    
+        if (value === '') {
+          setOptions(countries);
+          return;
+        }
+    
+        const filterRegex = new RegExp(value, 'i');
+        const filterOptions = options.filter((option: Option) =>
+          (option.label as string).match(filterRegex)
+        );
+        setOptions(filterOptions);
+      };
+    
+      const handleSelect = ({ value }: { value: string }) => {
+        if (selectedOptions.includes(value)) {
+          setSelectedOptions(selectedOptions.filter(option => option !== value));
+        } else {
+          setSelectedOptions([...selectedOptions, value]);
+        }
+      };
+    
+      const removeTag = useCallback(
+        tag => () => {
+          const options = [...selectedOptions];
+          options.splice(options.indexOf(tag), 1);
+          setSelectedOptions(options);
+        },
+        [selectedOptions]
+      );
+    
+      const tagsMarkup = selectedOptions.map(option => (
+        <StyledTag
+          key={\`option-\${option}\`}
+          onRemove={removeTag(option)}
+          textColor={Blue.S99}
+        >
+          {option}
+        </StyledTag>
+      ));
+    
+      useEffect(() => {
+        if (options.length === 0) {
+          setIsSearchEmpty(true);
+        }
+    
+        if (options.length > 0 && isSearchEmpty === true) {
+          setIsSearchEmpty(false);
+        }
+      }, [isSearchEmpty, options]);
+    
+      
+      return (
+        <div>
+          <Select
+            allowMultiple
+            disabled
+            onSelect={handleSelect}
+            options={options}
+            selectedValues={selectedOptions}
+            width="600px"
+            searchableProps={{
+              inputValue,
+              onInputChange: (value: string) => handleInputChange(value),
+            }}
+            label="Label"
             hasError
             helpText={<InlineError text="Error message" />}
           />

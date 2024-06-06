@@ -339,3 +339,14 @@ test('Select - Async searchable single select with custom popover placeholder', 
     'select-async-searchable-single-select-option-list-with-custom-custom-placeholder.png'
   );
 });
+
+test('Select - with options sublabel', async ({ page }) => {
+  const selectPage = new SelectPage(page);
+  await selectPage.gotoWithSublabelOptionPage();
+
+  await selectPage.activatorTextInput.waitFor();
+  await selectPage.activatorTextInput.focus();
+  await expect(selectPage.canvas).toHaveScreenshot(
+    'select-with-sublabel-option.png'
+  );
+});

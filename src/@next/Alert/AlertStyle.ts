@@ -4,10 +4,16 @@ import * as Breakpoints from '../utilities/breakpoints';
 import { Green, Neutral, Blue, Orange, Red } from '../utilities/colors';
 import { space12, space8 } from '../utilities/spacing';
 
-export const StyledAlertContainer = styled.div<{ zIndex?: number }>`
+export const StyledAlertContainer = styled.div<{
+  zIndex?: number;
+  position?: {
+    top?: string;
+    right?: string;
+  };
+}>`
   position: fixed;
-  top: 90px;
-  right: 24px;
+  top: ${props => (props.position?.top ? props.position.top : '90px')};
+  right: ${props => (props.position?.right ? props.position.right : '24px')};
   display: flex;
   padding: ${space12};
   gap: ${space8};

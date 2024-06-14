@@ -17,6 +17,10 @@ export type AlertProps = {
   /** Duration of alert in miliseconds */
   duration?: number;
   zIndex?: number;
+  position?: {
+    top?: string;
+    right?: string;
+  };
   onDismissed?: () => void;
 };
 
@@ -37,6 +41,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       duration = 4000,
       children,
       zIndex,
+      position,
       onDismissed,
     }: AlertProps,
     ref
@@ -74,6 +79,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         data-titled={hasTitle}
         data-status={status || 'info'}
         zIndex={zIndex}
+        position={position}
       >
         <div>
           <Icon name={iconName} />

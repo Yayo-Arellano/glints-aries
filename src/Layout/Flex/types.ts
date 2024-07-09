@@ -16,4 +16,6 @@ export type FlexProps = {
   alignItems?: (typeof FlexPropAndPossibleValueMap.alignItems)[number];
   /** CSS property flex-wrap */
   flexWrap?: (typeof FlexPropAndPossibleValueMap.flexWrap)[number];
+  /** CSS property gap */
+  gap?: string;
 };

@@ -193,8 +193,10 @@ export const iconNames = [
   'ri-whatsapp-line',
   'ri-whatsapp-fill',
   'ri-youtube-fill',
-  'ri-custom-salary-line',
-  'ri-custom-salary-fill',
+  'ri-custom-expense-line',
+  'ri-custom-expense-fill',
+  'ri-bank-card-line',
+  'ri-bank-card-fill',
 ] as const;
 
 export type IconNames = (typeof iconNames)[number];
@@ -392,6 +394,8 @@ export const iconsMappingComponent: { [name in IconNames]: SVGComponent } = {
   ['ri-whatsapp-line']: Icons.RiWhatsappLine,
   ['ri-whatsapp-fill']: Icons.RiWhatsappFill,
   ['ri-youtube-fill']: Icons.RiYoutubeFill,
-  ['ri-custom-salary-line']: Icons.RiCustomSalaryLine,
-  ['ri-custom-salary-fill']: Icons.RiCustomSalaryFill,
+  ['ri-custom-expense-line']: Icons.RiCustomExpenseLine,
+  ['ri-custom-expense-fill']: Icons.RiCustomExpenseFill,
+  ['ri-bank-card-line']: Icons.RiBankCardLine,
+  ['ri-bank-card-fill']: Icons.RiBankCardFill,
 };

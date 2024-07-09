@@ -17,6 +17,7 @@ import {
   SideSheetContent,
 } from './SideSheetStyle';
 import { Typography } from '../Typography';
+import classNames from 'classnames';
 
 export interface SideSheetProps {
   isOpen: boolean;
@@ -90,7 +91,12 @@ const SideSheet = React.forwardRef<HTMLDivElement, SideSheetProps>(
               onClick={handleClose}
             >
               <StyledSideSheetContainer
-                className={`${isClosedAnimation ? 'closed' : ''}`}
+                className={classNames(
+                  {
+                    closed: isClosedAnimation,
+                  },
+                  'side-sheet-container'
+                )}
                 ref={ref}
                 onClick={e => e.stopPropagation()}
                 {...props}

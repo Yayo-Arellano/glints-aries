@@ -143,6 +143,7 @@ const SideSheet = React.forwardRef<HTMLDivElement, SideSheetProps>(
                       <ButtonGroup fullWidth>
                         {basicButtonAction && (
                           <Button
+                            {...basicButtonAction}
                             onClick={basicButtonAction.action}
                             fullWidth={true}
                           >
@@ -150,7 +151,10 @@ const SideSheet = React.forwardRef<HTMLDivElement, SideSheetProps>(
                           </Button>
                         )}
                         {primaryButtonAction && (
-                          <PrimaryButton onClick={primaryButtonAction.action}>
+                          <PrimaryButton
+                            {...primaryButtonAction}
+                            onClick={primaryButtonAction.action}
+                          >
                             {primaryButtonAction.label}
                           </PrimaryButton>
                         )}

@@ -16,6 +16,7 @@ export const StyledFlex = styled(Box)<Props>`
   justify-content: ${({ justifyContent }) => justifyContent};
   align-items: ${({ alignItems }) => alignItems};
   flex-wrap: ${({ flexWrap }) => flexWrap};
+  gap: ${({ gap }) => gap};
 `;
 
 export const Flex: React.FC<Props> = ({
@@ -23,6 +24,7 @@ export const Flex: React.FC<Props> = ({
   justifyContent = 'flex-start',
   alignItems = 'stretch',
   flexWrap = 'nowrap',
+  gap,
   // the rest of props will be passed to Box component
   ...restProps
 }) => (
@@ -31,6 +33,7 @@ export const Flex: React.FC<Props> = ({
     justifyContent={justifyContent}
     alignItems={alignItems}
     flexWrap={flexWrap}
+    gap={gap}
     {...restProps}
   />
 );
